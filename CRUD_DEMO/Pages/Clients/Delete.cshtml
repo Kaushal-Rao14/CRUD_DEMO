@@ -1,0 +1,31 @@
+﻿
+@page 
+@using System.Data.SqlClient;
+
+@{
+    try
+    {
+        clientsInfo client = new clientsInfo();
+        string connectionString = "Data Source=.\\SqlExpress;Initial Catalog=dbCRUD_APP;Integrated Security=True;Encrypt=false";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            int id = Int32.Parse(Request.Query["id"]);
+            string sqlQuery = "delete from clients where id=@id";
+            using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+
+            }
+
+
+        }
+    }
+    catch (Exception e)
+    {
+
+
+    }
+    Response.Redirect("/Clients/index");
+}

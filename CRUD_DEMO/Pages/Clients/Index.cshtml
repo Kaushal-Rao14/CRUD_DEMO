@@ -1,0 +1,41 @@
+﻿@page
+@model CRUD_DEMO.Pages.Clients.IndexModel
+@{
+}
+<h2>Clients List </h2>
+<hr />
+<a class="btn btn-primary btn-md" href="/Clients/Create">New Client</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Created On</th>
+            <th>Action</th>
+        </tr>
+      
+    </thead>
+    <tbody>
+         @foreach (var client in Model.list)
+        {
+            <tr>
+                <td>@client.id</td>  
+                <td>@client.name</td>  
+                <td>@client.email</td>  
+                <td>@client.mobile</td>
+                <td>@client.address</td>
+                <td>@client.createdAt</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Clients/Edit?id=@client.id">Edit</a>  
+                    <a class="btn btn-primary btn-sm" onclick="return confirm('Are sure that you want to delete?')" href="/Clients/Delete?id=@client.id">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
